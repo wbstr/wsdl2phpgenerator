@@ -131,7 +131,6 @@ class ComplexType extends Type
 
             $getterComment = new PhpDocComment();
             $getterComment->setReturn(PhpDocElementFactory::getReturn($type, ''));
-            $getterCode = '';
             if ($type == '\DateTime') {
                 $getterCode = '  if ($this->' . $name . ' == null) {' . PHP_EOL
                     . '    return null;' . PHP_EOL
@@ -151,7 +150,6 @@ class ComplexType extends Type
             $setterComment = new PhpDocComment();
             $setterComment->addParam(PhpDocElementFactory::getParam($type, $name, ''));
             $setterComment->setReturn(PhpDocElementFactory::getReturn($this->phpNamespacedIdentifier, ''));
-            $setterCode = '';
             if ($type == '\DateTime') {
                 if ($member->getNullable()) {
                     $setterCode = '  if ($' . $name . ' == null) {' . PHP_EOL
