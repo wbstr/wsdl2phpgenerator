@@ -307,4 +307,10 @@ class Validator
     {
         return in_array(strtolower($string), self::$keywords);
     }
+
+    public static function camelize($word)
+    {
+        return lcfirst(str_replace(" ", "", ucwords(strtr($word, "_-", "  "))));
+    }
+
 }
