@@ -39,7 +39,7 @@ class Validator
         '__halt_compiler',
         'abstract',
         'and',
-        'array',
+//        'array',
         'as',
         'break',
         'callable',
@@ -219,6 +219,9 @@ class Validator
             case "datetime":
                 return  '\DateTime';
                 break;
+            case "array":
+                return  'array';
+                break;
             default:
                 $typeName = self::validateNamingConvention($typeName);
                 break;
@@ -244,7 +247,7 @@ class Validator
         // We currently only support type hints for arrays and DateTimes.
         // Going forward we could support it for generated types. The challenge here are enums as they are actually
         // strings and not class instances and we have no way of determining whether the type is an enum at this point.
-        if (substr($typeName, -2) == "[]") {
+        if (substr($typeName, -2) == "[]" || $typeName === 'array') {
             $typeHint = 'array';
         } elseif ($typeName == '\DateTime') {
             $typeHint = $typeName;
