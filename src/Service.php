@@ -165,7 +165,7 @@ class Service implements ClassGenerator
         $source .= '  $options = array_merge(' . var_export($this->config->get('soapClientOptions'), true) . ', $options);' . PHP_EOL;
         $source .= '  parent::__construct($wsdl, $options);' . PHP_EOL;
 
-        $function = new PhpFunction('public', '__construct', 'array $options = array(), $wsdl = \'' . $this->config->get('inputFile') . '\'', $source, $comment);
+        $function = new PhpFunction('public', '__construct', '$wsdl, array $options = array()', $source, $comment);
 
         // Add the constructor
         $this->class->addFunction($function);
