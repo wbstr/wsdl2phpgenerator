@@ -9,7 +9,7 @@ namespace Wsdl2PhpGenerator\PhpSource;
  *
  * @package phpSource
  * @author Fredrik Wallgren <fredrik.wallgren@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class PhpDocElement
 {
@@ -46,6 +46,25 @@ class PhpDocElement
      */
     public function __construct($type, $dataType, $variableName, $description)
     {
+        if ($variableName && $variableName[0] == '$') {
+            $variableName = substr($variableName, 1);
+        }
+        $phpDataType = '';
+        if (in_array($dataType, ['integer', 'byte', 'unsignedLong', 'unsignedInt', 'unsignedShort', 'unsignedByte',
+            'positiveInteger', 'negativeInteger', 'nonNegativeInteger', 'nonPositiveInteger'])) { /*'int', */
+            $phpDataType = 'int';
+        } elseif (in_array($dataType, ['double'])) { /*'float', */
+            $phpDataType = 'float';
+        } elseif (in_array($dataType, ['decimal', 'base64Binary', 'hexBinary', 'QName', 'dateTime', 'date', 'time',
+            'gYearMonth', 'gMonthDay', 'gYear', 'gMonth', 'gDay', 'duration', 'Name', 'NCName', 'NMTOKEN', 'NOTATION',
+            'NMTOKENS', 'ENTITY', 'ENTITIES', 'IDREF', 'IDREFS', 'anyURI', 'language', 'ID', 'normalizedString',
+            'token'])) { /*'string', */
+            $phpDataType = 'string';
+        }
+        if ($phpDataType != '') {
+            $description = trim($dataType . ' ' . $description);
+            $dataType = $phpDataType;
+        }
         $this->type = $type;
         $this->datatype = $dataType;
         $this->variableName = $variableName;

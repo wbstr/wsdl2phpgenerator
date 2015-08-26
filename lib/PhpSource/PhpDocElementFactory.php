@@ -11,7 +11,7 @@ use Exception;
  *
  * @package phpSource
  * @author Fredrik Wallgren <fredrik.wallgren@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class PhpDocElementFactory
 {
@@ -31,16 +31,6 @@ class PhpDocElementFactory
         if (strlen($name) == 0) {
             throw new Exception('A parameter must have a name!');
         }
-
-        if ($name[0] == '$') {
-            $name = substr($name, 1);
-        }
-        if ($dataType == 'long') {
-            $dataType = 'int';
-        } elseif ($dataType == 'double') {
-            $dataType = 'float';
-        }
-
         return new PhpDocElement('param', $dataType, $name, $description);
     }
 
