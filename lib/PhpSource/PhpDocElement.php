@@ -50,15 +50,15 @@ class PhpDocElement
             $variableName = substr($variableName, 1);
         }
         $phpDataType = '';
-        if (in_array($dataType, ['integer', 'byte', 'unsignedLong', 'unsignedInt', 'unsignedShort', 'unsignedByte',
-            'positiveInteger', 'negativeInteger', 'nonNegativeInteger', 'nonPositiveInteger'])) { /*'int', */
+        if (in_array($dataType, array('integer', 'byte', 'unsignedLong', 'unsignedInt', 'unsignedShort', 'unsignedByte',
+            'positiveInteger', 'negativeInteger', 'nonNegativeInteger', 'nonPositiveInteger'))) { /*'int', */
             $phpDataType = 'int';
-        } elseif (in_array($dataType, ['double'])) { /*'float', */
+        } elseif (in_array($dataType, array('double'))) { /*'float', */
             $phpDataType = 'float';
-        } elseif (in_array($dataType, ['decimal', 'base64Binary', 'hexBinary', 'QName', 'dateTime', 'date', 'time',
+        } elseif (in_array($dataType, array('decimal', 'base64Binary', 'hexBinary', 'QName', 'dateTime', 'date', 'time',
             'gYearMonth', 'gMonthDay', 'gYear', 'gMonth', 'gDay', 'duration', 'Name', 'NCName', 'NMTOKEN', 'NOTATION',
             'NMTOKENS', 'ENTITY', 'ENTITIES', 'IDREF', 'IDREFS', 'anyURI', 'language', 'ID', 'normalizedString',
-            'token'])) { /*'string', */
+            'token'))) { /*'string', */
             $phpDataType = 'string';
         }
         if ($phpDataType != '') {
