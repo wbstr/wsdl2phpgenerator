@@ -13,7 +13,7 @@ class AmazonEc2Test extends FunctionalTestCase
     public function testNonStandardNamespace()
     {
         // Load a service class.
-        $amazon = new \AmazonEC2();
+        $amazon = new \AmazonEC2($this->getWsdlPath());
 
         // If we have gotten so far without errors we should be good.
         $this->assertTrue(true);

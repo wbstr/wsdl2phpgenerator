@@ -16,7 +16,7 @@ class CommentsGenerationTest extends FunctionalTestCase
     public function testMainClassExists()
     {
         $this->assertGeneratedClassExists('CommentsGeneration');
-        return new \ReflectionClass(new \CommentsGeneration());
+        return new \ReflectionClass(new \CommentsGeneration($this->getWsdlPath()));
     }
 
     public function testEmptyCommentWillNotBeGenerated()

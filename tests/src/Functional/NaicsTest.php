@@ -26,7 +26,7 @@ class NaicsTest extends FunctionalTestCase
     public function testNaics()
     {
         // Perform the request.
-        $service = new \GenericNAICS();
+        $service = new \GenericNAICS($this->getWsdlPath());
         $request = new \GetNAICSByIndustry('Computer Systems');
 
         try {
@@ -61,7 +61,7 @@ class NaicsTest extends FunctionalTestCase
      */
     public function testSingleNaics()
     {
-        $service = new \GenericNAICS();
+        $service = new \GenericNAICS($this->getWsdlPath());
         // Requesting a specific ID should be a sure way to only return a single result.
         $request = new \GetNAICSByID('54151');
         $response = $service->GetNaicsByID($request);

@@ -51,7 +51,7 @@ class CurrencyConverterTest extends FunctionalTestCase
         $this->assertClassHasMethod('\\CC\\CurrencyConvertor', 'ConversionRate');
 
         // Setup and execute the service call.
-        $service = new \CC\CurrencyConvertor();
+        $service = new \CC\CurrencyConvertor($this->getWsdlPath());
         $request = new \CC\ConversionRate(\CC\Currency::USD, \CC\Currency::EUR);
         $this->assertEquals(\CC\Currency::USD, $request->getFromCurrency());
         $this->assertEquals(\CC\Currency::EUR, $request->getToCurrency());
