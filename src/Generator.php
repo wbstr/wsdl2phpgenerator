@@ -144,7 +144,9 @@ class Generator implements GeneratorInterface
                 $type = new ComplexType($this->config, $typeNode->getName());
                 $this->log('Loading type ' . $type->getPhpIdentifier());
 
-                $type->setAbstract($typeNode->isAbstract());
+                if (!$this->config->get('disableAbstract')) {
+                    $type->setAbstract($typeNode->isAbstract());
+                }
 
                 foreach ($typeNode->getParts() as $name => $typeName) {
                     // There are 2 ways a wsdl can indicate that a field accepts the null value -
