@@ -169,7 +169,10 @@ class Generator implements GeneratorInterface
                 $already_registered = false;
                 if ($this->config->get('sharedTypes')) {
                     foreach ($this->types as $registered_types) {
-                        if ($registered_types->getIdentifier() == $type->getIdentifier()) {
+                        // On case insensitive file systems (Windows, OSX) "foo.php" overwrites "Foo.php"
+                        // With strtolower() only the first type is registered
+                        // @TODO resolve overwrite issue
+                        if (strtolower($registered_types->getIdentifier()) == strtolower($type->getIdentifier())) {
                             $already_registered = true;
                             break;
                         }
